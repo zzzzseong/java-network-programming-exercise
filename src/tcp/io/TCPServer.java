@@ -1,4 +1,4 @@
-package io;
+package tcp.io;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,7 +34,7 @@ public class TCPServer {
             while(true) {
                 Socket clientSocket = serverSocket.accept();
                 InetSocketAddress address = (InetSocketAddress) clientSocket.getRemoteSocketAddress();
-                logger.info("Client[" + address.getHostName() + "] is connected\n");
+                logger.info("Client[" + address + "] is connected\n");
                 threadPool.execute(() -> processTask(clientSocket, address, UUID.randomUUID()));
             }
         } catch (BindException e) {
@@ -49,17 +49,16 @@ public class TCPServer {
             InputStream is = clientSocket.getInputStream();
             OutputStream os = clientSocket.getOutputStream()
         ) {
-            logger.info("Thread[" + uuid + "] is processing by Client[" + address.getHostName() + "]\n");
+            logger.info("Thread[" + uuid + "] is processing by Client[" + address + "]\n");
 
             byte[] readByte = new byte[1024];
             int readByteLen = is.read(readByte);
-
-            logger.info("Client[" + address.getHostName() + "] sent message: " + new String(readByte, 0, readByteLen) + "\n");
-
+            
+            logger.info("Client[" + address + "] sent message: " + new String(readByte, 0, readByteLen) + "\n");
             os.write(readByte, 0, readByteLen);
             os.flush();
 
-            logger.info("Client[" + address.getHostName() + "] is disconnected\n");
+            logger.info("Client[" + address + "] is disconnected\n");
             clientSocket.close();
         } catch (IOException e) {
             logger.info("IOException: " + e.getMessage());

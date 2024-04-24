@@ -108,7 +108,7 @@ reader.close();
 <img src="../../images/io/buffered_stream.png" width="100%" alt="buffered_stream.png">
 
 ```java
-import java.io.*;  
+import java.tcp.io.*;  
   
 public class Main {  
     public static void main(String[] args) throws IOException {  
@@ -184,7 +184,7 @@ public class Main {
 ObjectStream을 이용하면 객체를 파일 또는 네트워크로 입/출력할 수 있다. 이 과정에서 객체를 바이트로 변경하는 `직렬화(Serialization)`와 바이트를 객체로 변경하는 `역직렬화(Deserialization)`가 사용된다.
 
 ```java
-import java.io.*;  
+import java.tcp.io.*;  
   
 public class Main {  
     public static void main(String[] args) throws IOException, ClassNotFoundException {  
