@@ -6,14 +6,14 @@
 
 Java는 `Input Stream`과 `Output Stream`을 통해 데이터를 입/출력한다. Stream은 단방향으로 데이터가 흐르는 것을 의미하며 `Byte Stream`과 `Text Stream`으로 분류된다.
 
-<img src="../../images/io/stream_standalone.png" width="100%" alt="stream_standalone.png">
-<img src="../../images/io/stream.png" width="100%" alt="stream.png">
+<img src="/images/io/stream_standalone.png" width="100%" alt="stream_standalone.png">
+<img src="/images/io/stream.png" width="100%" alt="stream.png">
 
 ## 2. Byte Stream과 Text Stream
 
 자바 I/O는 ByteStream으로 `Input/OutputStream`이라는 상위 추상클래스를 제공하고 TextStream으로 `Reader/Writer`라는 상위 추상클래스를 제공한다.
 
-<img src="../../images/io/byte_text_stream.png" width="100%" alt="byte_text_stream.png">
+<img src="/images/io/byte_text_stream.png" width="100%" alt="byte_text_stream.png">
 
 ## 3. OutputStream - 출력스트림
 
@@ -75,7 +75,7 @@ reader.close();
 
 보조스트림은 다른 스트림과 연결되어 동작하고 자체 입출력은 수행할 수 없다. ByteStream을 TextStream으로 변환하고 성능향상을 위해 BufferedStream을 보조스트림을 추가하는 등으로  활용할 수 있다.
 
-<img src="../../images/io/substream.png" width="100%" alt="substream.png">
+<img src="/images/io/substream.png" width="100%" alt="substream.png">
 
 ```java
 // OutputStream을 Writer로 변환  
@@ -105,7 +105,7 @@ reader.close();
 
 자바는 BufferedStream(성능 향상 스트림)을 제공한다. 입출력 소스를 디스크와 직접 작업하지 않고 중간에 위치한 메인 메모리 버퍼와 작업하면서 I/O 실행 성능을 향상시킨다.
 
-<img src="../../images/io/buffered_stream.png" width="100%" alt="buffered_stream.png">
+<img src="/images/io/buffered_stream.png" width="100%" alt="buffered_stream.png">
 
 ```java
 import java.tcp.io.*;  
@@ -177,7 +177,7 @@ public class Main {
 }
 ```
 
-<img src="../../images/io/buffered_stream_time.png" width="100%" alt="buffered_stream_time.png">
+<img src="/images/io/buffered_stream_time.png" width="100%" alt="buffered_stream_time.png">
 
 ## 7. ObjectStream - 객체 스트림
 
