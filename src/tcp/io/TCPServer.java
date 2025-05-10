@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.*;
+import java.util.Arrays;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -25,16 +26,16 @@ public class TCPServer {
     }
 
     public static void startTCPServer() {
-        try(
-            ServerSocket serverSocket = new ServerSocket(PORT);
-            ExecutorService threadPool = Executors.newFixedThreadPool(THREAD_POOL_SIZE)
-        ) {
+        try(ServerSocket serverSocket = new ServerSocket(PORT)) {
+            ExecutorService threadPool = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
             logger.info("TCP Server is running on port " + PORT + "\n");
 
             while(true) {
                 Socket clientSocket = serverSocket.accept();
+
                 InetSocketAddress address = (InetSocketAddress) clientSocket.getRemoteSocketAddress();
                 logger.info("Client[" + address + "] is connected\n");
+
                 threadPool.execute(() -> processTask(clientSocket, address, UUID.randomUUID()));
             }
         } catch (BindException e) {
@@ -53,8 +54,10 @@ public class TCPServer {
 
             byte[] readByte = new byte[1024];
             int readByteLen = is.read(readByte);
-            
+            logger.info("Arrays.toString(readByte) = " + Arrays.toString(readByte));
+
             logger.info("Client[" + address + "] sent message: " + new String(readByte, 0, readByteLen) + "\n");
+
             os.write(readByte, 0, readByteLen);
             os.flush();
 
