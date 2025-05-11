@@ -23,10 +23,8 @@ public class UDPServer {
     }
 
     public static void startUDPServer() {
-        try(
-            DatagramSocket socket = new DatagramSocket(PORT);
-            ExecutorService threadPool = Executors.newFixedThreadPool(THREAD_POOL_SIZE)
-        ) {
+        try(DatagramSocket socket = new DatagramSocket(PORT)) {
+            ExecutorService threadPool = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
             logger.info("UDP Server is running on port " + PORT + "\n");
 
             while(true) {

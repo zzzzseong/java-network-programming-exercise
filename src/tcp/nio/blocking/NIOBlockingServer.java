@@ -25,10 +25,8 @@ public class NIOBlockingServer {
     }
 
     public static void startNIOBlockingServer() {
-        try(
-            ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-            ExecutorService threadPool = Executors.newFixedThreadPool(THREAD_POOL_SIZE)
-        ) {
+        try(ServerSocketChannel serverSocketChannel = ServerSocketChannel.open()) {
+            ExecutorService threadPool = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
             logger.info("NIO blocking server is running on port " + PORT + "\n");
 
             serverSocketChannel.configureBlocking(true);
